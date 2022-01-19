@@ -13,36 +13,36 @@ const io = require('socket.io')(server);
 // const bodyParser = require('body-parser');
 
 // Setup Middleware
-app.use(logger);
+// app.use(logger);
 
 // Body Parser Middleware
-app.use(express.json({limit: '50mb'})); // Allow us to handle raw json
-app.use(express.urlencoded({limit: '50mb', extended: false})) // Allow us to handle form submissions to handle URL encoded data
+// app.use(express.json({limit: '50mb'})); // Allow us to handle raw json
+// app.use(express.urlencoded({limit: '50mb', extended: false})) // Allow us to handle form submissions to handle URL encoded data
 
 
 // Template engine
-app.engine('handlebars', engine({defaultLayout: __dirname + '/views/layouts/main'}));
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', engine({defaultLayout: __dirname + '/views/layouts/main'}));
+// app.set('view engine', 'handlebars');
 
 // Set static folder
-app.use(express.static(file))
+// app.use(express.static(file))
 
 // Set views
-app.set('views', path.join(__dirname, '/views'));
+// app.set('views', path.join(__dirname, '/views'));
 
 
 // Home router
 app.get('/', (req, res) => {
-   const obj = {
-      title: 'Responsive Social Media Website',
-      h2: 'SocialMedia',
-      name: 'Cao Kiet',
-      primary,
-      request,
-      feeds
-   };
+   // const obj = {
+   //    title: 'Responsive Social Media Website',
+   //    h2: 'SocialMedia',
+   //    name: 'Cao Kiet',
+   //    primary,
+   //    request,
+   //    feeds
+   // };
 
-   res.render('body', obj);
+   // res.render('body', obj);
 
    const pathname = url.parse(req.url).pathname;
    io.emit('page-request', {
@@ -61,20 +61,20 @@ app.post('/', (req, res) => {
    })
 })
 
-app.post('/api/requests/accept', (req, res) => {
-   acceptResquest('accept', req.body);
-   res.send({message: 'Successfully!!!'});
-})
+// app.post('/api/requests/accept', (req, res) => {
+//    acceptResquest('accept', req.body);
+//    res.send({message: 'Successfully!!!'});
+// })
 
-app.post('/api/requests/decline', (req, res) => {
-   declineRequest('decline', req.body);
-   res.send({message: 'Successfully!!!'});
-})
+// app.post('/api/requests/decline', (req, res) => {
+//    declineRequest('decline', req.body);
+//    res.send({message: 'Successfully!!!'});
+// })
 
-app.post('/api/post', (req, res) => {
-   postMiddle('post', req.body);
-   res.send({message: 'Successfully!!!'});
-})
+// app.post('/api/post', (req, res) => {
+//    postMiddle('post', req.body);
+//    res.send({message: 'Successfully!!!'});
+// })
 
 io.on('connection', socket => {
    console.log('A user connected');
