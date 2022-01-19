@@ -34,7 +34,7 @@ app.set('views', path.join(__dirname, '/views'));
 
 
 // Home router
-app.get('/', (req, res) => {
+app.get('/*', (req, res) => {
    const obj = {
       title: 'Responsive Social Media Website',
       h2: 'SocialMedia',
