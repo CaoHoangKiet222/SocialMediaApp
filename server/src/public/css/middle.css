@@ -1,0 +1,686 @@
+/* ======================================= MIDDLE =================================== */
+.middle .stories {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   height: 12rem;
+   gap: 0.5rem;
+}
+
+.middle .stories .story {
+   padding: var(--card-padding);
+   border-radius: var(--card-border-radius);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   color: white;
+   font-size: 0.75rem;
+   width: 100%;
+   position: relative;
+   transition: 0.8s ease-in-out;
+   overflow: hidden;
+}
+
+.middle .stories .story::before {
+   content: "";
+   display: block;
+   width: 100%;
+   height: 5rem;
+   background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+   position: absolute;
+   bottom: 0;
+}
+
+.middle .stories .story .name {
+   z-index: 2;
+}
+
+/* .middle .stories .story:first-child:active { */
+/*    transform: translate(500px, 500px); */
+/* } */
+
+.middle .stories .story:nth-child(1) {
+   background: url('/images/city_illustration_2-wallpaper-2048x1152.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(2) {
+   background: url('/images/dark-moon.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(3) {
+   background: url('/images/476634.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(4) {
+   background: url('/images/Qs2Akp.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(5) {
+   background: url('/images/koi-moon-wallpaper.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(6) {
+   background: url('/images/WallpaperDog-589626.jpg')
+   no-repeat center center/cover;
+}
+.middle .stories .story:nth-child(7) {
+   background: url('/images/space-galaxy-planet-moon-wallpaper-preview.jpg')
+   no-repeat center center/cover;
+}
+
+.middle .story .profile-photo {
+   width: 2rem;
+   height: 2rem;
+   align-self: start;
+   border: 3px solid var(--color-primary);
+}
+
+.middle .story:hover {
+   transform: scale(0.98);
+}
+
+/* ================================== CREATE POST =================================== */
+.middle .create-post {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   margin-top: 1rem;
+   background: var(--color-white);
+   padding: 0.4rem var(--card-padding);
+   border-radius: var(--border-radius);
+}
+
+.your-post .card .create-post .handle {
+   padding-left: 1rem; 
+}
+
+.your-post .card .create-post .handle > p {
+   padding-right: 3.8rem; 
+}
+
+.your-post .card input[type="text"] {
+   font-size: 1.2rem;
+   width: 100%;
+   background: transparent;
+   color: var(--color-dark);
+   justify-self: left;
+}
+
+#create-post {
+   font-size: 1.5rem;
+   width: 95%;
+   margin-top: 1rem;
+   margin-left: 0.9rem;
+   margin-right: 0.9rem;
+}
+
+#create-post::-webkit-scrollbar {
+   display: none;
+}
+
+#your-mind {
+   margin-left: 0.5rem;
+   width: 100%;
+   color: #3A3B3C;
+   background: #F0F2F5;
+}
+
+#post {
+   margin-top: 1rem;
+   width: 100%;
+   cursor: not-allowed;
+   background: #E4E6EB;
+}
+
+#post:not(.disable-hover):hover {
+   opacity: 0.5;
+}
+
+.error-post {
+   color: red;
+   margin-top: 7px;
+   text-align: left;
+   display: none;
+}
+/* =================================== FEEDS =========================================== */
+.middle .feeds .feed {
+   background: var(--color-white);
+   border-radius: var(--card-border-radius);
+   padding: var(--card-padding);
+   margin: 1rem 0;
+   font-size: 0.85rem;
+   line-height: 1.5;
+   position: relative;
+}
+
+.middle .feed .head {
+   display: flex;
+   justify-content: space-between;
+}
+
+.middle .feed .user {
+   display: flex;
+   gap: 1rem;
+}
+
+.middle .feed .user .edit {
+   gap: 1rem;
+}
+
+.middle .feed .photo {
+   border-radius: var(--card-border-radius);
+   overflow: hidden;
+   margin: 0.7rem 0;
+}
+
+.middle .feed .action-buttons {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 1.4rem;
+   /* margin: 0.3rem; */
+}
+
+.middle .liked-by {
+   display: flex;
+}
+
+.middle .liked-by span {
+   width: 1.4rem;
+   height: 1.4rem;
+   display: block;
+   border-radius: 50%;
+   overflow: hidden;
+   border: 2px solid var(--color-white);
+   margin-left: -0.6rem;
+}
+
+.middle .liked-by span:first-child {
+   margin: 0;
+}
+
+.middle .liked-by p {
+   margin-left: 0.5rem;
+}
+
+/* =============================== YOUR POST ================================= */
+.your-post {
+   background: rgba(255, 255, 255, 0.5);
+   width: 100vw;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 100;
+   text-align: center;
+   display: grid;
+   place-items: center;
+   font-size: 0.9rem;
+   display: none;
+}
+
+.your-post .card {
+   background-color: var(--color-white);
+   padding: 1rem;
+   border-radius: var(--card-border-radius);
+   width: 35%;
+   height: auto;
+   box-shadow:  0 0 1rem var(--color-primary);
+}
+
+.your-post .card > h2 {
+   border-bottom: 2px solid var(--color-primary);
+}
+
+.your-post .card .close-btn {
+   width: 100%;
+   height: 20px;
+   display: grid;
+   position: relative;
+   cursor: pointer;
+}
+
+.your-post .card .close-btn > i{
+   position: absolute;
+   top: 0px;
+   right: 5px;
+   border: 2px solid #dddddd;
+   border-radius: 50%;
+   width: 2.5rem;
+   height: 2.5rem;
+   background: gray;
+}
+
+.your-post .card .close-btn > i.uil.uil-times::before {
+   font-size: 1.7rem;
+   color: #dddddd;
+   margin-top: 5px;
+}
+
+.your-post .card .close-btn > i:hover {
+   opacity: 0.6;
+}
+
+.your-post .card .profile-photo {
+   font-size: 10px;
+   color: black;
+   background: black;
+}
+
+.your-post .card .add-post {
+  display: flex;
+   justify-content: space-between;
+   border: 1px solid var(--color-primary);
+   border-radius: var(--card-border-radius);
+   margin-top: 1rem;
+}
+
+.your-post .card .add-post h3:first-child {
+   padding-left: 1rem;
+   padding-top: 0.5rem;
+}
+
+.your-post .card .add-post .add-icons {
+   display: flex;
+   cursor: pointer;
+}
+
+.your-post .card .add-post .add-icons > h1:first-child:hover {
+   opacity: 0.6;
+   border-radius: 50%;
+}
+
+.your-post .card textarea {
+   resize: none;
+   color: var(--white-color-lightness);
+   background: var(--dark-color-lightness);
+}
+
+
+/* =============================== IMAGE PREVIEW ======================================= */
+.container__post {
+   overflow: scroll;
+   transition: all 200s ease-in-out;
+}
+
+.container__post::-webkit-scrollbar {
+   display: none;
+}
+
+.image-preview {
+   width: 80%;
+   height: 200px;
+   max-height: auto;
+   margin-top: 15px;
+   margin-left: 50px;
+   border: 2px solid #dddddd;
+   display: grid;
+   align-items: center;
+   font-weight: bold;
+   color: gray;
+   border-radius: var(--card-border-radius);
+   position: relative;
+   cursor: pointer;
+   display: none;
+}
+
+.image-preview:not(.nohover):hover {
+   background: #EBEAE7;
+}
+
+
+.image-preview .close-btnX > i {
+   position: absolute;
+   top: 0px;
+   right: 5px;
+   border: 2px solid #dddddd;
+   border-radius: 50%;
+   width: 2.5rem;
+   height: 2.5rem;
+   cursor: pointer;
+   background: gray;
+}
+
+.image-preview .close-btnX > i.uil.uil-times {
+   margin-top: 7px;
+   margin-right: 2px;
+}
+
+.image-preview .close-btnX > i.uil.uil-times::before {
+   font-size: 1.7rem;
+   margin-top: 5px;
+   color: white;
+}
+
+.image-preview .close-btnX i:hover {
+   opacity: 0.8;
+}
+
+.image-preview__image {
+   width: 100%;
+   height: auto;
+   display: none;
+   border-radius: var(--card-border-radius);
+}
+
+.image-preview .image-head span {
+   display: block;
+}
+
+/* ############################## Like Comment Share ########################## */
+:root {
+   --color-like: #65676B;
+   --color-hover: #EBEAE7; 
+}
+
+.like-comment-share {
+   display: flex;
+   justify-content: space-around;
+   font-size: 16px;
+   border-top: 0.6px solid var(--color-like);
+   border-bottom: 0.6px solid var(--color-like);
+   color: var(--color-like);
+   padding: 4px;
+   cursor: pointer;
+   margin-top: 8px;
+   position: relative;
+}
+
+.like-comment-share i {
+   font-size: 20px;
+}
+.like-comment-share .like {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+   width: 100%;
+   transition: 0.05s;
+}
+.like-comment-share .comment {
+   text-align: center;
+   width: 100%;
+}
+.like-comment-share .share {
+   text-align: center;
+   width: 100%;
+}
+
+.like-comment-share .like:hover,
+ .like-comment-share .comment:hover,
+ .like-comment-share .share:hover {
+   background: var(--color-hover);
+   transition: all 0.1s ease-in;
+}
+
+.like-comment-share .like:active .like-heading{
+   transform: scale(0.9);
+}
+
+.like-comment-share.LIKE .like {
+   color: rgb(32, 120, 244);
+}
+
+/* COMMENT */
+
+.commented {
+   display: flex;
+   margin-top: 8px;
+   flex: 1;
+   display: none;
+}
+
+.commented.COMMENT {
+   display: flex;
+}
+
+.commented .profile-photo {
+   max-height: 2.3em;
+   max-width: 2.4em;
+}
+
+.commented  textarea {
+   font-size: 15px;
+   padding: 8px 12px;
+   margin-left: 5px;
+   width: 100%;
+   background: #F0F2F5;
+   border-radius: var(--card-border-radius);
+   resize: none;
+   font-family: inherit;
+}
+
+.comment .icons-comment {
+   display: flex;
+   width: 100%;
+   flex-direction: row;
+}
+
+.commented span {
+   font-size: 20px;
+   width: 54px;
+   cursor: pointer;
+   text-align: center;
+   padding-top: 2px;
+   height: 40px;
+}
+
+.commented span:first-child {
+   margin-left: 40px;
+}
+
+.commented span:hover {
+   background: var(--color-hover);
+   border-radius: 50%;
+}
+
+/* ###################### Emojis ############################### */
+
+.emojis-popup {
+   display: flex;
+   position: absolute;
+   justify-content: space-around;
+   text-align: center;
+   align-items: center;
+   left: 0;
+   bottom: 25px;
+   font-size: 30px;
+   height: 55px;
+   background-color: var(--color-white);
+   box-shadow: 0 0 1rem var(--color-primary);
+   border-radius: 40px;
+   transition: 0.3s ease-in;
+   visibility: hidden;
+}
+
+.emojis-popup.hover {
+   visibility: visible;
+   transform: translateY(-15px);
+}
+
+.emojis-popup div  {
+   margin: 0px 3px;
+}
+
+.emojis-popup div p {
+   position: absolute;
+   font-size: 15px;
+   top: -20px;
+   color: #fff;
+   background: #1c1e21;
+   width: 50px;
+   /* padding-right: 20px; */
+   border-radius: 20px;
+   visibility: hidden;
+}
+
+.emojis-popup div span i {
+   position: relative;
+   background-color: red;
+   top: -2px;
+   height: 38px;
+   width: 40px;
+   padding-top: 10px;
+   border-radius: 50%;
+}
+
+.emojis-popup div span i:hover {
+   animation: 1s infinite alternate animateEmojis;
+}
+
+.emojis-popup  p {
+   margin-left: -5px;
+}
+
+.emojis-popup .emoji-like {
+   margin-left: 14px;
+}
+
+
+.emojis-popup .emoji-angry {
+   margin-right: 14px;
+}
+
+.emojis-popup .emoji-like span i {
+   background-color: #0088ff;
+   color: white;
+}
+
+.emojis-popup .emoji-heart span i {
+   background-color: #ff243a;
+   color: white;
+}
+
+.emojis-popup .emoji-care span i {
+   background-color: #ffff00;
+   color: white;
+}
+
+.emojis-popup .emoji-haha span i {
+   background-color: #ffe24f;
+   color: white;
+}
+
+.emojis-popup .emoji-wow span i {
+   background-color: #f200ff;
+   color: white;
+}
+
+.emojis-popup .emoji-sad span i {
+   background-color: #ff4d00;
+   color: white;
+}
+
+.emojis-popup .emoji-angry span i {
+   background-color: red;
+   color: white;
+}
+
+@keyframes animateEmojis {
+   from {
+      transform: scale(1.2) rotate(-30deg);
+   }
+   to {
+      transform: scale(1.2) rotate(30deg);
+   }
+}
+
+/* ############################## Comment Popup ############################### */
+.commented-popup {
+   display: flex;
+   margin-top: 4px;
+}
+
+.commented-popup .profile-photo {
+   max-height: 2.3em;
+   max-width: 2.4em;
+   margin-top: 10px;
+}
+
+.commented-popup .handle {
+   margin-left: 5px;
+   margin-top: 5px;
+   background-color: var(--color-light);
+   border-radius: 15px;
+   max-width: 613px;
+}
+
+/* .commented-popup .handle .handle-tag { */
+/*    display: none; */
+/* } */
+
+.commented-popup .handle h4{
+   padding: 10px 10px 0px 10px;
+}
+
+.commented-popup .handle p {
+   padding: 0px 10px 10px 10px;
+   overflow-wrap: anywhere;
+}
+
+.commented-popup .edit-delete {
+   align-self: center;
+   position: relative;
+}
+
+.commented-popup .edit-delete > span {
+   position: relative;
+   margin-left: 1em;
+   z-index: 1;
+}
+
+.commented-popup .edit-delete span i {
+   font-size: 2em;
+   border-radius: 50%;
+   cursor: pointer;
+}
+
+.commented-popup .edit-delete span i:hover {
+   background-color: var(--color-light);
+}
+
+.commented-popup .edit-delete .edit-delete-popup {
+   position: absolute;
+   top: 3.2em;
+   left: -7.6em;
+   width: 20em;
+   background: var(--color-white);
+   border-radius: var(--card-border-radius);
+   padding: var(--card-padding);
+   box-shadow: 0 0 0.5rem var(--color-primary);
+   z-index: 10;
+}
+
+.commented-popup .edit-delete .edit-delete-popup::before {
+   content: "";
+   width: 1.2em;
+   height: 1.2em;
+   display: block;
+   background: var(--color-white);
+   position: absolute;
+   left: 9.4em;
+   top: -0.6em;
+   transform: rotate(45deg);
+   z-index: 2;
+}
+
+.commented-popup .edit-delete .edit-delete-popup {
+   display: flex;
+   flex-direction: column;
+   padding-left: 0px;
+   visibility: hidden;
+}
+
+.commented-popup .edit-delete .edit-delete-popup.show-up {
+   visibility: visible;
+}
+
+.commented-popup .edit-delete .edit-delete-popup span {
+   margin-left: 15px;
+}
+
+.commented-popup .edit-delete .edit-delete-popup span:hover {
+   cursor: pointer;
+   background-color: var(--color-light);
+}
