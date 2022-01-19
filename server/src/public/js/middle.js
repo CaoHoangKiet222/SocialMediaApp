@@ -1,5 +1,6 @@
 'use strict';
 // IMAGE PREVIEW
+var socket = io();
 const imIcon = document.querySelectorAll(".add-post h1");
 const inpFile = document.getElementById("inpFile");
 const previewContainer = document.getElementById("imagePreview");
@@ -283,6 +284,7 @@ function PostToMiddle() {
          types: ['Like', 'Comment', 'Share'],
       };
 
+      socket.emit('post', data);
       fetchData(data, 'post');
 
       feeds.appendChild(newDiv);
