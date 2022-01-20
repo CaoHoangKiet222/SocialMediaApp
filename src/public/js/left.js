@@ -158,14 +158,80 @@ function closeAllSidebar() {
    // closeInputFile();
 }
 
+async function getData(type) {
+   const options = {
+      method: 'GET',
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      // referrerPolicy: 'no-referrer',
+   };
+   const data = await fetch(`/api/${type}`, options).then(res => res.json());
+   return data;
+}
+
+async function postData(data, type) {
+   const options = {
+      method: 'POST',
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      // referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data)
+   };
+   const dataRes = await fetch(`/api/${type}`, options).then(res => res.json());
+   return dataRes;
+}
+
 // THEME
 const root = document.querySelector(":root");
 const themeList = document.querySelector(".customize-theme .font-size .choose-size");
 const customizeTheme = document.querySelector(".customize-theme");
 let isChoose = true;
 const spanActive = themeList.querySelector(".active");
+
+class fontSize {
+   "id";
+   "fontSize";
+   "--sticky-top-left";
+   "--sticky-top-right";
+
+   static init(id, fs, stl, str) {
+      this["id"] = id;
+      this["fontSize"] = fs;
+      this["--sticky-top-left"] = stl;
+      this["--sticky-top-right"] = str;
+      return this;
+   }
+
+   static async makeFontSize() {
+      deleteFont();
+      const data = await getData('fontsize');
+      for (let j = 0; j < themeList.children.length; j++) {
+         if (j === parseInt(data["id"])) {
+            themeList.children[j].style.background = "var(--color-primary)";
+         }
+      }
+      document.querySelector("html").style.fontSize = data.fontSize;
+      root.style.setProperty("--sticky-top-left", data["--sticky-top-left"]);
+      root.style.setProperty("--sticky-top-right", data["--sticky-top-right"]);
+   }
+
+   static async postFontSize(type) {
+      const data = {
+         "id": this["id"],
+         "fontSize": this["fontSize"],
+         "--sticky-top-left": this["--sticky-top-left"],
+         "--sticky-top-right": this["--sticky-top-right"]
+      }
+      await postData(data, type);
+   }
+}
+
+fontSize.makeFontSize();
+
 for (let i = 0; i < themeList.children.length; i++) {
-   themeList.children[i].addEventListener("click", () => {
+   themeList.children[i].addEventListener("click", async () => {
       deleteFont();
       themeList.children[i].style.background = "var(--color-primary)";
 
@@ -173,26 +239,32 @@ for (let i = 0; i < themeList.children.length; i++) {
          document.querySelector("html").style.fontSize = "10px";
          root.style.setProperty("--sticky-top-left", "5.4rem");
          root.style.setProperty("--sticky-top-right", "5.4rem");
+         await fontSize.init("0", "10px", "5.4rem", "5.4rem").postFontSize('fontsize');
+
       }
       else if (i === 1) {
          document.querySelector("html").style.fontSize = "13px";
          root.style.setProperty("--sticky-top-left", "5.4rem");
          root.style.setProperty("--sticky-top-right", "-7rem");
+         await fontSize.init("1", "13px", "5.4rem", "-7rem").postFontSize('fontsize');
       }
       else if (i === 2) {
          document.querySelector("html").style.fontSize = "16px";
          root.style.setProperty("--sticky-top-left", "-2rem");
          root.style.setProperty("--sticky-top-right", "-17rem");
+         await fontSize.init("2", "16px", "-2rem", "-17rem").postFontSize('fontsize');
       }
       else if (i === 3) {
          document.querySelector("html").style.fontSize = "19px";
          root.style.setProperty("--sticky-top-left", "-5rem");
          root.style.setProperty("--sticky-top-right", "-25rem");
+         await fontSize.init("3", "19px", "-5rem", "-25rem").postFontSize('fontsize');
       }
       else {
          document.querySelector("html").style.fontSize = "22px";
          root.style.setProperty("--sticky-top-left", "-12rem");
          root.style.setProperty("--sticky-top-right", "-35rem");
+         await fontSize.init("4", "22px", "-12rem", "-35rem").postFontSize('fontsize');
       }
    })
 }
@@ -204,27 +276,71 @@ function deleteFont() {
 }
 
 const colorList = document.querySelectorAll(".choose-color span");
+
+class Color {
+   "id";
+   "--color-primary";
+
+   static init(id, cp) {
+      this["id"] = id;
+      this["--color-primary"] = cp;
+      return this;
+   }
+
+   static async makeColor() {
+      removeAllColor();
+      const data = await getData('color');
+      root.style.setProperty("--color-primary", data["--color-primary"]);
+      for (let i = 0; i < colorList.length; i++) {
+         if (i === parseInt(data["id"])) {
+            colorList[i].style.border = "5px solid white";
+         }
+      }
+   }
+
+   static async postColor(type) {
+      const data = {
+         "id": this["id"],
+         "--color-primary": this["--color-primary"]
+      }
+      await postData(data, type);
+   }
+}
+
+Color.makeColor();
+
 colorList.forEach((item, index) => {
    item.addEventListener("click", () => {
       item.style.border = "5px solid white";
       removeColor(index);
       if (item.contains(document.querySelector(".choose-color span.color-1"))) {
          root.style.setProperty("--color-primary", "hsl(252, 75%, 60%)");
+         Color.init("0", "hsl(252, 75%, 60%)").postColor('color');
       }
       else if (item.contains(document.querySelector(".choose-color span.color-2"))) {
          root.style.setProperty("--color-primary", "hsl(52, 75%, 60%)");
+         Color.init("1", "hsl(52, 75%, 60%)").postColor('color');
       }
       else if (item.contains(document.querySelector(".choose-color span.color-3"))) {
          root.style.setProperty("--color-primary", "hsl(0, 95%, 65%)");
+         Color.init("2", "hsl(0, 95%, 65%)").postColor('color');
       }
       else if (item.contains(document.querySelector(".choose-color span.color-4"))) {
          root.style.setProperty("--color-primary", "hsl(152, 75%, 60%)");
+         Color.init("3", "hsl(152, 75%, 60%)").postColor('color');
       }
       else {
          root.style.setProperty("--color-primary", "hsl(202, 75%, 60%)");
+         Color.init("4", "hsl(202, 75%, 60%)").postColor('color');
       }
    })
 })
+
+function removeAllColor() {
+   for (let i = 0; i < colorList.length; i++) {
+      colorList[i].style.border = "none";
+   }
+}
 
 function removeColor(index) {
    for (let i = 0; i < colorList.length; i++) {
@@ -235,6 +351,46 @@ function removeColor(index) {
 }
 
 const backGround = document.querySelectorAll(".background .choose-bg div");
+
+class BackGround {
+   "id";
+   "--dark-color-lightness";
+   "--white-color-lightness";
+   "--light-color-lightness";
+
+   static init(id, d, w, l) {
+      this["id"] = id;
+      this["--dark-color-lightness"] = d;
+      this["--white-color-lightness"] = w;
+      this["--light-color-lightness"] = l;
+      return this;
+   }
+
+   static async makeBackGround() {
+      removeActive();
+      const data = await getData('background');
+      backGround.forEach((item, index) => {
+         if (index === parseInt(data["id"]))
+            item.classList.add("active");
+      });
+      root.style.setProperty("--dark-color-lightness", data["--dark-color-lightness"]);
+      root.style.setProperty("--white-color-lightness", data["--white-color-lightness"]);
+      root.style.setProperty("--light-color-lightness", data["--light-color-lightness"]);
+   }
+
+   static async postBackGround(type) {
+      const data = {
+         "id": this["id"],
+         "--dark-color-lightness": this["--dark-color-lightness"],
+         "--white-color-lightness": this["--white-color-lightness"],
+         "--light-color-lightness": this["--light-color-lightness"]
+      }
+      await postData(data, type);
+   }
+}
+
+BackGround.makeBackGround();
+
 backGround.forEach(chooseBackground);
 
 function chooseBackground(item) {
@@ -245,16 +401,19 @@ function chooseBackground(item) {
          root.style.setProperty("--dark-color-lightness", "17%");
          root.style.setProperty("--white-color-lightness", "100%");
          root.style.setProperty("--light-color-lightness", "95%");
+         BackGround.init("0", "17%", "100%", "95%").postBackGround('background');
       }
       else if (item.classList.contains("bg-2")) {
          root.style.setProperty("--dark-color-lightness", "95%");
          root.style.setProperty("--white-color-lightness", "20%");
          root.style.setProperty("--light-color-lightness", "15%");
+         BackGround.init("1", "95%", "20%", "15%").postBackGround('background');
       }
       else {
          root.style.setProperty("--dark-color-lightness", "95%");
          root.style.setProperty("--white-color-lightness", "10%");
          root.style.setProperty("--light-color-lightness", "0%");
+         BackGround.init("2", "95%", "10%", "0%").postBackGround('background');
       }
    })
 }

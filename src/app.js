@@ -5,6 +5,7 @@ const path = require('path');
 const file = path.join(__dirname, '/public');
 const {acceptResquest, declineRequest, primary, request} = require('./database/nodejs/acceptRequest');
 const {feeds, postMiddle} = require('./database/nodejs/postMiddle');
+const {loadFile, saveFile} = require('./database/nodejs/load_save');
 
 const app = express();
 const server = require('http').createServer(app);
@@ -42,6 +43,36 @@ app.get('/', (req, res) => {
    res.render('body', obj);
 })
 
+app.get('/api/background', (req, res) => {
+   const dataColor = loadFile('background');
+   res.json(dataColor);
+});
+
+app.post('/api/background', (req, res) => {
+   saveFile('background', JSON.stringify(req.body));
+   res.send({message: 'Successfully!!!'});
+});
+
+app.get('/api/color', (req, res) => {
+   const dataColor = loadFile('color');
+   res.json(dataColor);
+});
+
+app.get('/api/fontsize', (req, res) => {
+   const dataTheme = loadFile('fontsize');
+   res.json(dataTheme);
+})
+
+app.post('/api/color', (req, res) => {
+   saveFile('color', JSON.stringify(req.body));
+   res.send({message: 'Successfully!!!'});
+});
+
+app.post('/api/fontsize', (req, res) => {
+   saveFile('fontsize', JSON.stringify(req.body));
+   res.send({message: 'Successfully!!!'});
+})
+
 app.post('/api/requests/accept', (req, res) => {
    acceptResquest('accept', req.body);
    res.send({message: 'Successfully!!!'});
@@ -56,7 +87,6 @@ app.post('/api/post', (req, res) => {
    postMiddle('post', req.body);
    res.send({message: 'Successfully!!!'});
 })
-
 const PORT = process.env.YOUR_PORT || process.env.PORT || 3000;
 server.listen(PORT, () => {
    console.log(`Server is listening on port ${PORT}`);

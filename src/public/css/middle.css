@@ -155,9 +155,8 @@
 }
 
 .middle .feeds .feed .caption p {
-   margin-left: 0.5em;
-   margin-top: 1em;
-   font-size: 15px;
+   margin: 8px 0px 0px 12px;
+   font-size: 20px;
 }
 
 .middle .feed .head {
