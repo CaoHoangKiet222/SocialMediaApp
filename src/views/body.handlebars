@@ -241,7 +241,7 @@
                   to post.</p>
             </div>
          </div>
-         <!--------------------------------- FEEDS -------------------------------->
+         <!--------------------------------- feeds -------------------------------->
          <div class="feeds">
             {{#each feeds}}
             <div class="feed">
@@ -262,6 +262,11 @@
                   </span>
                </div>
 
+               {{#if this.caption}}
+                  <div class="caption">
+                     <p>{{this.caption}}</p>
+                  </div>
+               {{/if}}
                <div class="photo">
                   <img src="{{this.src.[1]}}">
                </div>

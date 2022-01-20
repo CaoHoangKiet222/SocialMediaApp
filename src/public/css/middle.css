@@ -154,6 +154,12 @@
    position: relative;
 }
 
+.middle .feeds .feed .caption p {
+   margin-left: 0.5em;
+   margin-top: 1em;
+   font-size: 15px;
+}
+
 .middle .feed .head {
    display: flex;
    justify-content: space-between;

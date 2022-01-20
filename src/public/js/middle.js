@@ -278,6 +278,7 @@ function PostToMiddle() {
       const data = {
          src: ['/images/profile-1.jpg', source, '/images/profile-1.jpg'],
          h3: 'Cao Kiet',
+         caption: textarea.value,
          // pLikedBy: 'Liked by',
          small: 'Pleiku, 1 MINUTE AGO',
          types: ['Like', 'Comment', 'Share'],
