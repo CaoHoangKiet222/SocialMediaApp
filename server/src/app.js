@@ -6,11 +6,8 @@ const file = path.join(__dirname, '/public');
 const {acceptResquest, declineRequest, primary, request} = require('./database/nodejs/acceptRequest');
 const {feeds, postMiddle} = require('./database/nodejs/postMiddle');
 
-const url = require('url');
 const app = express();
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
-const bodyParser = require('body-parser');
 
 // Setup Middleware
 app.use(logger);
