@@ -12,10 +12,8 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const bodyParser = require('body-parser');
 
-// app.use(bodyParser());
-
 // Setup Middleware
-// app.use(logger);
+app.use(logger);
 
 // Body Parser Middleware
 app.use(express.json({limit: '50mb'})); // Allow us to handle raw json
@@ -60,13 +58,6 @@ app.post('/api/requests/decline', (req, res) => {
 app.post('/api/post', (req, res) => {
    postMiddle('post', req.body);
    res.send({message: 'Successfully!!!'});
-})
-
-io.on('connection', socket => {
-   console.log('A user connected');
-   socket.on('post', res => {
-      console.log(res);
-   })
 })
 
 const PORT = process.env.YOUR_PORT || process.env.PORT || 3000;
