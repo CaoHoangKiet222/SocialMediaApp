@@ -121,7 +121,6 @@ main .container .right {
 .right .request .info {
    display: flex;
    gap: 2rem;
-   /* justify-content: space-around; */
    margin-bottom: 1rem;
 }
 

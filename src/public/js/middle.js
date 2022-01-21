@@ -8,15 +8,6 @@ const previewDefaultText = document.querySelectorAll(".image-preview__default-te
 const containerPost = document.querySelector(".container__post");
 let isChooseImg = false, isOpen = false;
 
-// containerPost.addEventListener('mouseenter', () => {
-//    containerPost.style.overflow = "scroll";
-//    containerPost.style.overflowX = "hidden";
-// })
-
-// containerPost.addEventListener('mouseleave', () => {
-//    containerPost.style.overflowY = "hidden";
-// })
-
 imIcon[0].addEventListener("click", openInputFile);
 
 

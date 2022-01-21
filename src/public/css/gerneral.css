@@ -149,6 +149,18 @@ main .container {
    position: relative;
 }
 
+main .container .left{
+   animation: slideInFromLeft 1.5s;
+}
+
+main .container .right {
+   animation: slideInFromRight 1.5s;
+}
+
+main .middle {
+   animation: slideInFromTop 1.5s;
+}
+
 /* Media queries for small laptop and big tablets */
 @media screen and (max-width: 1440px) {
    .container {
@@ -217,11 +229,11 @@ main .container {
       position: absolute;
       left: -20.5rem;
       width: 20rem;
-      font-size: 10px;
+      font-size: 0.6rem;
    }
 
    .left .notifications-popup::before {
-      display: absolute;
+      position: absolute;
       top: 1rem;
       left: calc(20.5rem - 1.1rem);
       display: block;
@@ -233,8 +245,8 @@ main .container {
 
    .left .map-popup {
       left: -27.5rem;
-      width: 430px;
-      height: 430px;
+      width: 26.9rem;
+      height: 27rem;
       right: 0;
    }
 
@@ -245,8 +257,8 @@ main .container {
 
    .left .map-popup iframe {
       position: absolute;
-      height: 400px;
-      width: 400px;
+      height: 25rem;
+      width: 25rem;
    }
 
    main .container .middle {
@@ -254,6 +266,32 @@ main .container {
    }
 
    main .container .right {
+      position: absolute;
+      width: 25rem;
+      right: -30rem;
+      top: 4.8rem;
+      z-index: 500;
+      position: fixed;
+      transition: 1s ease-out;
+   }
+   main .container .right.movein {
+      animation: 0.001ms slideInFromRight ease-in;
+      right: 5.8rem;
+   }
+
+   main .container .right::before {
+      content: "";
+      position: absolute;
+      width: 1.4rem;
+      height: 1.4rem;
+      top: 14.7rem;
+      right: -0.7rem;
+      display: block;
+      transform: rotate(45deg);
+      background: var(--color-white);
+   }
+
+   .right .messages::-webkit-scrollbar {
       display: none;
    }
 
@@ -273,10 +311,36 @@ main .container {
    .customize-theme .choose-bg .bg-3 {
       justify-content: center;
    }
+
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 5%;
+   }
    /* ========================= CREATE POST ========================= */
    .your-post .card {
       width: 60%;
       padding-left: 10px;
+   }
+}
+
+@media screen and (max-width: 912px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 20%;
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 10%;
+   }
+}
+
+@media screen and (max-width: 540px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 5%;
    }
 }
 
@@ -288,6 +352,11 @@ main .container {
    .customize-theme {
       width: 100%;
       height: 100%;
+   }
+
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 15%;
    }
 
    .left .notifications-popup {
@@ -306,4 +375,72 @@ main .container {
    .image-preview {
          margin-left: 33px;
    }
+
+   .like-comment-share .like:hover,
+    .like-comment-share .comment:hover,
+    .like-comment-share .share:hover {
+      background: none;
+   }
+
+   .commented-popup .edit-delete .edit-delete-popup span:hover {
+      background: none;
+   }
+
+   .commented-popup .edit-delete span i:hover {
+      background-color: none;
+   }
+
+   .commented span:hover {
+      background: none;
+   }
+
+   .right .request .info {
+      align-items: center;
+      justify-content: center;
+   }
+
+   .right .request .action {
+      align-items: center;
+      justify-content: space-evenly;
+   }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }

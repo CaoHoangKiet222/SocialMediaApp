@@ -22,7 +22,7 @@ for (let i = 0; i < menuItems.length; i++) {
       if (isActive[i]) {
          isActive[i] = false;
          AddActive(0);
-         e.stopPropagation();
+         // e.stopPropagation();
          closeAllSidebar();
       }
       else {
@@ -130,6 +130,7 @@ function closeNotifications() {
 function toggleMessage() {
    messagerightPopup.style.boxShadow = "0 0 1rem var(--color-primary)";
    document.getElementById("messages-notifications").querySelector(".notification-count").style.display = "none";
+   document.querySelector("main .container .right").classList.add("movein");
 }
 
 function closeToggleMessage() {
@@ -156,6 +157,7 @@ function closeAllSidebar() {
    closeThemeModal();
    closeYourPost();
    // closeInputFile();
+   document.querySelector("main .container .right").classList.remove("movein");
 }
 
 async function getData(type) {

@@ -33,9 +33,9 @@ main .container .left .profile {
    position: relative;
 }
 
-.left .sidebar .menu-item:hover {
-   background: var(--color-light);
-}
+/* .left .sidebar .menu-item:hover { */
+/*    background: var(--color-light); */
+/* } */
 
 .left .sidebar i {
    font-size: 1.4rem;
@@ -171,13 +171,19 @@ main .container .left .profile {
    display: none;
 }
 
+.customize-theme .card.move {
+   animation: 1.5s slideInFromBottom ease;
+   bottom: 30%;
+}
+
 .customize-theme .card {
    background-color: var(--color-white);
    padding: 3rem;
    border-radius: var(--card-border-radius);
    width: 50%;
    box-shadow:  0 0 1rem var(--color-primary);
-   position: relative;
+   position: absolute;
+   bottom: 100%;
 }
 
 .customize-theme .card .close-btnX > i {
