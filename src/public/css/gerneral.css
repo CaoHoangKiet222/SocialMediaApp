@@ -337,20 +337,7 @@ main .middle {
    }
 }
 
-/* @media screen and (max-height: 400px) { */
-/*    main .container { */
-/*       grid-template-columns: auto; */
-/*    } */
-
-/*    main .left { */
-/*       display: none; */
-/*    } */
-/* } */
-
 @media screen and (max-width: 540px) {
-   /* .container { */
-   /*    width: 96%; */
-   /* } */
    .customize-theme .card.move {
       animation: 1.5s slideInFromBottom ease;
       bottom: 5%;
