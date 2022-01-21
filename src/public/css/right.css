@@ -35,6 +35,9 @@ main .container .right {
    margin-bottom: 1rem;
 }
 
+.right .messages .search-bar > input{
+   width: 100%;
+}
 .right .messages .category {
    display: flex;
    justify-content: space-between;
