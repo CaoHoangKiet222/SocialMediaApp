@@ -337,10 +337,53 @@ main .middle {
    }
 }
 
+@media screen and (max-height: 400px) {
+   main .container {
+      grid-template-columns: auto;
+   }
+
+   main .left {
+      display: none;
+   }
+}
+
 @media screen and (max-width: 540px) {
+   /* .container { */
+   /*    width: 96%; */
+   /* } */
    .customize-theme .card.move {
       animation: 1.5s slideInFromBottom ease;
       bottom: 5%;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .like-comment-share .like:hover,
+    .like-comment-share .comment:hover,
+    .like-comment-share .share:hover {
+      background: none;
+   }
+
+   .commented-popup .edit-delete .edit-delete-popup span:hover {
+      background: none;
+   }
+
+   .commented-popup .edit-delete span i:hover {
+      background-color: none;
+   }
+
+   .commented span:hover {
+      background: none;
+   }
+
+   .right .request .info {
+      align-items: center;
+      justify-content: center;
+   }
+
+   .right .request .action {
+      align-items: center;
+      justify-content: space-evenly;
    }
 }
 
