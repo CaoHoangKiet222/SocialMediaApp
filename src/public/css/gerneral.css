@@ -337,15 +337,15 @@ main .middle {
    }
 }
 
-@media screen and (max-height: 400px) {
-   main .container {
-      grid-template-columns: auto;
-   }
+/* @media screen and (max-height: 400px) { */
+/*    main .container { */
+/*       grid-template-columns: auto; */
+/*    } */
 
-   main .left {
-      display: none;
-   }
-}
+/*    main .left { */
+/*       display: none; */
+/*    } */
+/* } */
 
 @media screen and (max-width: 540px) {
    /* .container { */
