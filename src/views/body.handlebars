@@ -130,54 +130,14 @@
       <div class="middle">
          <!----------------------------------- STORIES ------------------------------------>
          <div class="stories">
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-1.jpg">
+            {{#each stories}}
+               <div class="story">
+                  <div class="profile-photo">
+                     <img src={{this.src}}>
+                  </div>
+                  <p class="name">{{this.p}}</p>
                </div>
-               <p class="name">Your Story</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-2.jpg">
-               </div>
-               <p class="name">Quang_Em</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-3.jpg">
-               </div>
-               <p class="name">NO_ON</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-4.jpg">
-               </div>
-               <p class="name">Cao_Kiet</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-5.jpeg">
-               </div>
-               <p class="name">Taehyung</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-6.jpg">
-               </div>
-               <p class="name">Rose</p>
-            </div>
-
-            <div class="story">
-               <div class="profile-photo">
-                  <img src="images/profile-7.jpg">
-               </div>
-               <p class="name">Jsu</p>
-            </div>
+            {{/each}}
          </div>
          <!--------------------------------- END OF STORIES -------------------------------->
          <form class="create-post">

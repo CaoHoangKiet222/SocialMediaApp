@@ -64,6 +64,7 @@ const request = new Array(
    },
 );
 
+
 const acceptResquest = function (file, newData) {
    const dataJSON = loadFile(file);
    dataJSON.unshift(newData);
@@ -86,10 +87,11 @@ function findIndex(el, ob) {
 }
 
 // Shutdown and restart server not affect data
-const makeFile = function () {
+const makeFileRequest = function () {
    // Accept
    const accepts = loadFile('accept');
    primary.unshift(...accepts);
+   randomChangeEl(primary);
    accepts.forEach(item => {
       request.splice(findIndex(item, primary), 1);
    })
@@ -99,10 +101,28 @@ const makeFile = function () {
    declines.forEach(item => {
       request.splice(findIndex(item, request), 1);
    })
+   randomChangeEl(request);
 }
-makeFile();
+makeFileRequest();
+
+function randomChangeEl(element) {
+   let size = element.length;
+   let arr = new Array(size).fill(false, 0), arrOb = [...element];
+   arrOb.forEach((item, index) => {
+      while (true) {
+         let newIndex = Math.floor(Math.random() * element.length);
+         if (!arr[newIndex]) {
+            element[newIndex] = item;
+            arr[newIndex] = true;
+            break;
+         }
+      }
+   });
+   return element;
+}
 
 module.exports = {
+   randomChangeEl,
    acceptResquest,
    declineRequest,
    primary,

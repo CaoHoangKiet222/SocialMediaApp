@@ -1,3 +1,4 @@
+const {randomChangeEl} = require("./acceptRequest");
 const {loadFile, saveFile} = require("./load_save");
 
 const feeds = [
@@ -39,6 +40,37 @@ const feeds = [
    },
 ];
 
+const stories = new Array(
+   {
+      src: "/images/profile-1.jpg",
+      p: "Your Story",
+   },
+   {
+      src: "/images/profile-2.jpg",
+      p: "Quang_Em",
+   },
+   {
+      src: "/images/profile-3.jpg",
+      p: "NO_ON",
+   },
+   {
+      src: "/images/profile-4.jpg",
+      p: "Cao_Kiet",
+   },
+   {
+      src: "/images/profile-5.jpg",
+      p: "Taehyung",
+   },
+   {
+      src: "/images/profile-6.jpg",
+      p: "Rose",
+   },
+   {
+      src: "/images/profile-7.jpg",
+      p: "Jsu",
+   },
+)
+
 const postMiddle = function (file, newData) {
    const dataJSON = loadFile(file);
    dataJSON.push(newData);
@@ -46,13 +78,15 @@ const postMiddle = function (file, newData) {
    saveFile(file, JSON.stringify(dataJSON));
 }
 
-const makeFile = function () {
+const makeFilePost = function () {
    const posts = loadFile('post');
    feeds.push(...posts);
+   randomChangeEl(feeds);
 }
-makeFile();
+makeFilePost();
 
 module.exports = {
    feeds,
-   postMiddle
+   postMiddle,
+   stories
 };

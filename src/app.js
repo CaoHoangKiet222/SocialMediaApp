@@ -3,8 +3,8 @@ const logger = require('./middleware/logger');
 const {engine} = require('express-handlebars');
 const path = require('path');
 const file = path.join(__dirname, '/public');
-const {acceptResquest, declineRequest, primary, request} = require('./database/nodejs/acceptRequest');
-const {feeds, postMiddle} = require('./database/nodejs/postMiddle');
+const {acceptResquest, declineRequest, primary, request, randomChangeEl} = require('./database/nodejs/acceptRequest');
+const {feeds, postMiddle, stories} = require('./database/nodejs/postMiddle');
 const {loadFile, saveFile} = require('./database/nodejs/load_save');
 
 const app = express();
@@ -30,20 +30,20 @@ app.set('views', path.join(__dirname, '/views'));
 
 
 // Home router
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
    const obj = {
       title: 'Responsive Social Media Website',
       h2: 'SocialMedia',
       name: 'Cao Kiet',
-      primary,
-      request,
-      feeds
+      feeds: randomChangeEl(feeds),
+      stories: randomChangeEl(stories),
+      primary: randomChangeEl(primary),
+      request: randomChangeEl(request),
    };
-
    res.render('body', obj);
 })
 
-app.get('/api/background', (req, res) => {
+app.get('/api/background', (_req, res) => {
    const dataColor = loadFile('background');
    res.json(dataColor);
 });
@@ -53,12 +53,12 @@ app.post('/api/background', (req, res) => {
    res.send({message: 'Successfully!!!'});
 });
 
-app.get('/api/color', (req, res) => {
+app.get('/api/color', (_req, res) => {
    const dataColor = loadFile('color');
    res.json(dataColor);
 });
 
-app.get('/api/fontsize', (req, res) => {
+app.get('/api/fontsize', (_req, res) => {
    const dataTheme = loadFile('fontsize');
    res.json(dataTheme);
 })
