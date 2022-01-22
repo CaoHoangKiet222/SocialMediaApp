@@ -323,26 +323,26 @@ main .middle {
    }
 }
 
-@media screen and (max-width: 912px) {
-   .customize-theme .card.move {
-      animation: 1.5s slideInFromBottom ease;
-      bottom: 20%;
-   }
-}
+/* @media screen and (max-width: 912px) { */
+/*    .customize-theme .card.move { */
+/*       animation: 1.5s slideInFromBottom ease; */
+/*       bottom: 20%; */
+/*    } */
+/* } */
 
-@media screen and (max-width: 768px) {
-   .customize-theme .card.move {
-      animation: 1.5s slideInFromBottom ease;
-      bottom: 10%;
-   }
-}
+/* @media screen and (max-width: 768px) { */
+/*    .customize-theme .card.move { */
+/*       animation: 1.5s slideInFromBottom ease; */
+/*       bottom: 10%; */
+/*    } */
+/* } */
 
-@media screen and (max-width: 540px) {
-   .customize-theme .card.move {
-      animation: 1.5s slideInFromBottom ease;
-      bottom: 5%;
-   }
-}
+/* @media screen and (max-width: 540px) { */
+/*    .customize-theme .card.move { */
+/*       animation: 1.5s slideInFromBottom ease; */
+/*       bottom: 5%; */
+/*    } */
+/* } */
 
 @media screen and (max-width: 900px) {
    .like-comment-share .like:hover,
@@ -384,10 +384,10 @@ main .middle {
       height: 100%;
    }
 
-   .customize-theme .card.move {
-      animation: 1.5s slideInFromBottom ease;
-      bottom: 15%;
-   }
+   /* .customize-theme .card.move { */
+   /*    animation: 1.5s slideInFromBottom ease; */
+   /*    bottom: 15%; */
+   /* } */
 
    .left .notifications-popup {
       font-size: 10px;
@@ -395,11 +395,6 @@ main .middle {
 
    .left .notifications-popup .profile-photo {
       width: 10%;
-   }
-
-   .your-post {
-      width: 100%;
-      height: 100%;
    }
 
    .image-preview {
