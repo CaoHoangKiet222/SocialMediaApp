@@ -6,7 +6,6 @@ const loadFile = function (file) {
       const pathToRequest = path.join(__dirname, `../dbjson/${file}.json`);
       const dataBuffer = fs.readFileSync(pathToRequest);
       const dataJSON = dataBuffer.toString();
-      console.log(pathToRequest);
       return JSON.parse(dataJSON);
    }
    catch {

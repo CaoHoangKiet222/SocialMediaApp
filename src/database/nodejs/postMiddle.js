@@ -10,6 +10,7 @@ const feeds = [
       pLikedBy: 'Liked by ',
       bLikedBy: ['Lisa, Rose', ' and 2,343 others'],
       types: ['Like', 'Comment', 'Share'],
+      textContainer: new Array()
    },
    {
       src: ['/images/profile-7.jpg', '/images/profile-6.jpg', '/images/profile-1.jpg'],
@@ -19,6 +20,7 @@ const feeds = [
       pLikedBy: 'Liked by ',
       bLikedBy: ['Lisa, Rose', ' and 2,435 others'],
       types: ['Like', 'Comment', 'Share'],
+      textContainer: new Array()
    },
    {
       src: ['/images/profile-8.jpg', '/images/profile-14.jpg', '/images/profile-1.jpg'],
@@ -28,6 +30,7 @@ const feeds = [
       pLikedBy: 'Liked by ',
       bLikedBy: ['Lisa, Rose', ' and 2,343 others'],
       types: ['Like', 'Comment', 'Share'],
+      textContainer: new Array()
    },
    {
       src: ['/images/profile-10.jpg', '/images/profile-15.png', '/images/profile-1.jpg'],
@@ -37,6 +40,7 @@ const feeds = [
       pLikedBy: 'Liked by ',
       bLikedBy: ['Lisa, Rose', ' and 2,343 others'],
       types: ['Like', 'Comment', 'Share'],
+      textContainer: new Array()
    },
 ];
 
@@ -58,7 +62,7 @@ const stories = new Array(
       p: "Cao_Kiet",
    },
    {
-      src: "/images/profile-5.jpg",
+      src: "/images/profile-5.jpeg",
       p: "Taehyung",
    },
    {
@@ -71,22 +75,29 @@ const stories = new Array(
    },
 )
 
-const postMiddle = function (file, newData) {
-   const dataJSON = loadFile(file);
-   dataJSON.push(newData);
-   feeds.push(newData);
-   saveFile(file, JSON.stringify(dataJSON));
+const postMiddle = function (newData, element) {
+   element.push(newData);
 }
 
-const makeFilePost = function () {
-   const posts = loadFile('post');
-   feeds.push(...posts);
-   randomChangeEl(feeds);
+const commentPopup = function (newData, element) {
+   if (!element[newData.indexComment].textContainer)
+      element[newData.indexComment].textContainer = new Array();
+   element[newData.indexComment].textContainer.push({newText: newData.newText, text: newData.text});
 }
-makeFilePost();
+
+const commentExistPopup = function (newData, element) {
+   element[newData.indexComment].textContainer.splice(newData.indexExistComment, 1, {newText: newData.newText, text: newData.text});
+}
+
+const deleteExistPopup = function (newData, element) {
+   element[newData.indexComment].textContainer.splice(newData.indexExistComment, 1);
+}
 
 module.exports = {
    feeds,
    postMiddle,
-   stories
+   stories,
+   commentPopup,
+   commentExistPopup,
+   deleteExistPopup
 };

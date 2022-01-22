@@ -4,7 +4,7 @@ const {engine} = require('express-handlebars');
 const path = require('path');
 const file = path.join(__dirname, '/public');
 const {acceptResquest, declineRequest, primary, request, randomChangeEl} = require('./database/nodejs/acceptRequest');
-const {feeds, postMiddle, stories} = require('./database/nodejs/postMiddle');
+const {feeds, postMiddle, stories, commentPopup, commentExistPopup, deleteExistPopup} = require('./database/nodejs/postMiddle');
 const {loadFile, saveFile} = require('./database/nodejs/load_save');
 
 const app = express();
@@ -71,22 +71,39 @@ app.post('/api/color', (req, res) => {
 app.post('/api/fontsize', (req, res) => {
    saveFile('fontsize', JSON.stringify(req.body));
    res.send({message: 'Successfully!!!'});
-})
+});
 
 app.post('/api/requests/accept', (req, res) => {
-   acceptResquest('accept', req.body);
+   acceptResquest(req.body, primary);
+   declineRequest(req.body, request);
    res.send({message: 'Successfully!!!'});
-})
+});
 
 app.post('/api/requests/decline', (req, res) => {
-   declineRequest('decline', req.body);
+   declineRequest(req.body, request);
+   res.send({message: 'Successfully!!!'});
+});
+
+app.post('/api/post', (req, res) => {
+   postMiddle(req.body, feeds);
+   res.send({message: 'Successfully!!!'});
+});
+
+app.post('/api/post/comment', (req, res) => {
+   commentPopup(req.body, feeds);
+   res.send({message: 'Successfully!!!'});
+});
+
+app.post('/api/post/comment-exist', (req, res) => {
+   commentExistPopup(req.body, feeds);
+   res.send({message: 'Successfully!!!'});
+});
+
+app.post('/api/clear/comment', (req, res) => {
+   deleteExistPopup(req.body, feeds);
    res.send({message: 'Successfully!!!'});
 })
 
-app.post('/api/post', (req, res) => {
-   postMiddle('post', req.body);
-   res.send({message: 'Successfully!!!'});
-})
 const PORT = process.env.YOUR_PORT || process.env.PORT || 3000;
 server.listen(PORT, () => {
    console.log(`Server is listening on port ${PORT}`);

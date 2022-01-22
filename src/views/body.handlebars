@@ -316,6 +316,43 @@
                   <span><i class="uil uil-camera"></i></span>
                   <span><i class="uil uil-smile"></i></span>
                </div>
+
+               {{#each this.textContainer}}
+                  {{#if this.newText}}
+                     {{#if this.text}}
+                        <div>
+                           <div class="commented-popup">
+                              <div class="profile-photo">
+                                 <img src="./images/profile-1.jpg">
+                              </div>
+                              <div class="handle">
+                                 <h4>Kiet CaoHoang</h4>
+                                 <p contenteditable="false">{{{this.newText}}}</p>
+                              </div>
+                              <div class="edit-delete">
+                                 <span><i class="uil uil-ellipsis-h"></i></span>
+                                 <div class="edit-delete-popup">
+                                    <span><i class="uil uil-pen"></i>Edit</span>
+                                    <span><i class="uil uil-trash-alt"></i>Delete</span>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="commented" style="display: none;">
+                              <div class="profile-photo">
+                                 <img src="./images/profile-1.jpg">
+                              </div>
+
+                              <textarea type="text" name="text" rows="1" style="overflow: hidden;"
+                                 placeholder="Write a comment...">{{{this.text}}}</textarea>
+
+                              <span><i class="uil uil-smile"></i></span> <span><i class="uil uil-camera"></i></span>
+                              <span><i class="uil uil-smile"></i></span>
+                           </div>
+                        </div>
+                     {{/if}}
+                  {{/if}}
+               {{/each}}
             </div>
             {{/each}}
             <!----------------------------------- ENDS OF FEEDS ----------------------------->

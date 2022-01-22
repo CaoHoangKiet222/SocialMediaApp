@@ -7,6 +7,7 @@ const previewImage = document.querySelector(".image-preview__image");
 const previewDefaultText = document.querySelectorAll(".image-preview__default-text");
 const containerPost = document.querySelector(".container__post");
 let isChooseImg = false, isOpen = false;
+var indexComment = 0, indexExistComment = 0;
 
 imIcon[0].addEventListener("click", openInputFile);
 
@@ -163,8 +164,7 @@ function PostToMiddle() {
                <h3>Cao Kiet</h3>
                <small>Pleiku, 1 MINUTE AGO</small>
             </div>
-
-         </div>
+          </div>
             <span class="edit">
                <i class="uil uil-ellipsis-h"></i>
             </span>
@@ -334,6 +334,18 @@ function PostToMiddle() {
       });
 
       // ################# Comment End #######################
+      // ################  Scroll animation  #################
+      window.addEventListener('scroll', () => {
+         const triggerBottom = window.innerHeight / 5 * 4;
+         const feedTop = newDiv.getBoundingClientRect().top
+
+         if (feedTop < triggerBottom) {
+            newDiv.classList.add('show');
+         } else {
+            newDiv.classList.remove('show');
+         }
+      });
+      // ################### End scroll animation #############
       textarea.value = '';
       yourMind.firstElementChild.textContent = textarea.placeholder;
       document.querySelector(".error-post").style.display = "none";
@@ -410,8 +422,7 @@ function chooseLikeCommentShare(e) {
 }
 
 // ####################### Comment Popup #####################
-// const comment = document.querySelector("#comment");
-const commentList = document.querySelectorAll(".commented > textarea");
+const commentList = document.querySelectorAll(".feed > .commented > textarea");
 
 commentList.forEach((comment, index) => {
    comment.addEventListener('keypress', function (e) {
@@ -440,7 +451,8 @@ function textAreaAdjust(element) {
 
 function commentPopup(text, index) {
    let newText = text.trim().split('\n').filter(item => item.length != 0).join('</br>');
-   const newComment = `
+   const newComment = document.createElement('div');
+   newComment.innerHTML = `
       <div class="commented-popup">
          <div class="profile-photo">
             <img src="./images/profile-1.jpg">
@@ -470,28 +482,35 @@ function commentPopup(text, index) {
          <span><i class="uil uil-camera"></i></span>
          <span><i class="uil uil-smile"></i></span>
       </div>
-   `;
-
+   `
    const feedList = document.querySelectorAll(".feeds .feed");
    feedList.forEach((feed, idx) => {
       if (index === idx) {
-         feed.insertAdjacentHTML('beforeend', newComment);
+         feed.appendChild(newComment);
+         indexComment = index;
+
+         fetchData({newText, text, indexComment}, 'post/comment');
+
+         newComment.querySelector(".edit-delete > span i").addEventListener('click', (e) => {
+            e.target.parentElement.nextElementSibling.classList.toggle("show-up");
+         });
+
+         const edits = newComment.querySelectorAll(".edit-delete > span i");
+         edits.forEach((item, index) => {
+            item.addEventListener('click', function (e) {
+               indexExistComment = index;
+               editComment(e);
+            });
+         })
       }
-   })
+   });
 
    // ######################### Edit Comment ############################
-   const edits = document.querySelectorAll(".commented-popup .edit-delete > span i");
-   edits.forEach((item) => {
-      item.addEventListener('click', editComment);
-   })
 }
-
 function editComment(e) {
    const containerJustify = e.target.parentElement.nextElementSibling;
    const commentedPopup = e.target.parentElement.parentElement.parentElement;
    const textarea = e.target.parentElement.parentElement.parentElement.nextElementSibling.querySelector("textarea");
-
-   containerJustify.classList.toggle("show-up");
 
    textarea.addEventListener('input', (e) => {
       e.preventDefault();
@@ -502,7 +521,6 @@ function editComment(e) {
    spans.forEach((span, index) => {
       span.addEventListener('click', () => {
          if (index === 0) {
-            containerJustify.classList.remove("show-up");
             commentedPopup.style.display = "none";
             commentedPopup.nextElementSibling.style.display = "flex";
             textAreaAdjust(textarea);
@@ -512,8 +530,9 @@ function editComment(e) {
          }
          else if (index === 1) {
             e.target.parentElement.parentElement.parentElement.remove();
-            containerJustify.classList.remove("show-up");
+            fetchData({indexComment, indexExistComment}, 'clear/comment');
          }
+         containerJustify.classList.remove("show-up");
       })
    })
 }
@@ -531,6 +550,7 @@ function removeEnter(e) {
          p.innerHTML = newText;
          comPopup.previousElementSibling.style.display = "flex";
          comPopup.style.display = "none";
+         fetchData({newText, text: newText, indexComment, indexExistComment}, 'post/comment-exist');
       }
    }
 }
@@ -679,11 +699,37 @@ function addEmojis(emoji) {
          target.style.color = "red";
       }
       target.lastElementChild.textContent = p;
-      // emoji.parentElement.parentElement.classList.remove("hover");
       emoji.parentElement.parentElement.style.display = "none";
-      // setTimeout(() => {
-      //    emoji.parentElement.parentElement.style.display = "flex";
-      // }, 100);
    });
 }
 
+// Scroll animation
+const feedList = document.querySelectorAll(".middle .feeds .feed");
+window.addEventListener('scroll', checkFeedBacks);
+
+checkFeedBacks()
+
+function checkFeedBacks() {
+   const triggerBottom = window.innerHeight / 5 * 4;
+
+   feedList.forEach(feed => {
+      const feedTop = feed.getBoundingClientRect().top
+
+      if (feedTop < triggerBottom) {
+         feed.classList.add('show');
+      } else {
+         feed.classList.remove('show');
+      }
+   })
+}
+
+feedList.forEach((item, _index) => {
+   item.querySelectorAll(".commented-popup .edit-delete > span i")?.forEach((itm, index) => {
+      itm.addEventListener("click", (e) => {
+         e.target.parentElement.nextElementSibling.classList.toggle("show-up");
+         indexComment = _index;
+         indexExistComment = index;
+         editComment(e);
+      })
+   })
+})

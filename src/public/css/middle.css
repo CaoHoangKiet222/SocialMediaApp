@@ -152,6 +152,16 @@
    font-size: 0.85rem;
    line-height: 1.5;
    position: relative;
+  transform: translateX(400%);
+  transition: transform 0.4s ease;
+}
+
+.middle .feeds .feed:nth-of-type(even) {
+   transform: translateX(-400%);
+}
+
+.middle .feeds .feed.show {
+   transform: translateX(0);
 }
 
 .middle .feeds .feed .caption p {

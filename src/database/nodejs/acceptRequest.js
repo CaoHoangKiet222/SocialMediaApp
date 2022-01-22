@@ -65,18 +65,12 @@ const request = new Array(
 );
 
 
-const acceptResquest = function (file, newData) {
-   const dataJSON = loadFile(file);
-   dataJSON.unshift(newData);
-   primary.unshift(newData);
-   saveFile(file, JSON.stringify(dataJSON));
+const acceptResquest = function (newData, element) {
+   element.unshift(newData);
 }
 
-const declineRequest = function (file, newData) {
-   const dataJSON = loadFile(file);
-   request.splice(findIndex(newData, request), 1);
-   dataJSON.unshift(newData);
-   saveFile(file, JSON.stringify(dataJSON));
+const declineRequest = function (newData, element) {
+   element.splice(findIndex(newData, element), 1);
 }
 
 function findIndex(el, ob) {
@@ -86,29 +80,10 @@ function findIndex(el, ob) {
    return -1;
 }
 
-// Shutdown and restart server not affect data
-const makeFileRequest = function () {
-   // Accept
-   const accepts = loadFile('accept');
-   primary.unshift(...accepts);
-   randomChangeEl(primary);
-   accepts.forEach(item => {
-      request.splice(findIndex(item, primary), 1);
-   })
-
-   // Decline
-   const declines = loadFile('decline');
-   declines.forEach(item => {
-      request.splice(findIndex(item, request), 1);
-   })
-   randomChangeEl(request);
-}
-makeFileRequest();
-
 function randomChangeEl(element) {
    let size = element.length;
    let arr = new Array(size).fill(false, 0), arrOb = [...element];
-   arrOb.forEach((item, index) => {
+   arrOb.forEach((item) => {
       while (true) {
          let newIndex = Math.floor(Math.random() * element.length);
          if (!arr[newIndex]) {
