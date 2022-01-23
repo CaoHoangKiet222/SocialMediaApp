@@ -316,6 +316,10 @@ main .middle {
       animation: 1.5s slideInFromBottom ease;
       bottom: 5%;
    }
+   .your-post {
+      width: 100%;
+      height: 100%;
+   }
    /* ========================= CREATE POST ========================= */
    .your-post .card {
       width: 60%;
@@ -323,28 +327,28 @@ main .middle {
    }
 }
 
-/* @media screen and (max-width: 912px) { */
-/*    .customize-theme .card.move { */
-/*       animation: 1.5s slideInFromBottom ease; */
-/*       bottom: 20%; */
-/*    } */
-/* } */
+@media screen and (max-width: 912px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 20%;
+   }
+}
 
-/* @media screen and (max-width: 768px) { */
-/*    .customize-theme .card.move { */
-/*       animation: 1.5s slideInFromBottom ease; */
-/*       bottom: 10%; */
-/*    } */
-/* } */
+@media screen and (max-width: 768px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 10%;
+   }
+}
 
-/* @media screen and (max-width: 540px) { */
-/*    .customize-theme .card.move { */
-/*       animation: 1.5s slideInFromBottom ease; */
-/*       bottom: 5%; */
-/*    } */
-/* } */
+@media screen and (max-width: 540px) {
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 5%;
+   }
+}
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1280px) {
    .like-comment-share .like:hover,
     .like-comment-share .comment:hover,
     .like-comment-share .share:hover {
@@ -371,6 +375,14 @@ main .middle {
    .right .request .action {
       align-items: center;
       justify-content: space-evenly;
+   }
+
+   .middle .feeds .feed {
+     transform: none;
+   }
+
+   .middle .feeds .feed:nth-of-type(even) {
+      transform: none;
    }
 }
 
@@ -384,10 +396,10 @@ main .middle {
       height: 100%;
    }
 
-   /* .customize-theme .card.move { */
-   /*    animation: 1.5s slideInFromBottom ease; */
-   /*    bottom: 15%; */
-   /* } */
+   .customize-theme .card.move {
+      animation: 1.5s slideInFromBottom ease;
+      bottom: 15%;
+   }
 
    .left .notifications-popup {
       font-size: 10px;
@@ -401,32 +413,12 @@ main .middle {
          margin-left: 33px;
    }
 
-   .like-comment-share .like:hover,
-    .like-comment-share .comment:hover,
-    .like-comment-share .share:hover {
-      background: none;
+   .middle .feeds .feed {
+     transform: none;
    }
 
-   .commented-popup .edit-delete .edit-delete-popup span:hover {
-      background: none;
-   }
-
-   .commented-popup .edit-delete span i:hover {
-      background-color: none;
-   }
-
-   .commented span:hover {
-      background: none;
-   }
-
-   .right .request .info {
-      align-items: center;
-      justify-content: center;
-   }
-
-   .right .request .action {
-      align-items: center;
-      justify-content: space-evenly;
+   .middle .feeds .feed:nth-of-type(even) {
+      transform: none;
    }
 }
 
