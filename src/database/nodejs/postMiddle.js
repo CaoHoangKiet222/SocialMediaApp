@@ -83,14 +83,18 @@ const commentPopup = function (newData, element) {
    if (!element[newData.indexComment].textContainer)
       element[newData.indexComment].textContainer = new Array();
    element[newData.indexComment].textContainer.push({newText: newData.newText, text: newData.text});
+   console.log(element[newData.indexComment].textContainer);
 }
 
 const commentExistPopup = function (newData, element) {
    element[newData.indexComment].textContainer.splice(newData.indexExistComment, 1, {newText: newData.newText, text: newData.text});
+   console.log(element[newData.indexComment].textContainer);
 }
 
 const deleteExistPopup = function (newData, element) {
+   console.log(element[newData.indexComment].textContainer);
    element[newData.indexComment].textContainer.splice(newData.indexExistComment, 1);
+   console.log(element[newData.indexComment].textContainer);
 }
 
 module.exports = {

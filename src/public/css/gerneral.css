@@ -377,13 +377,13 @@ main .middle {
       justify-content: space-evenly;
    }
 
-   .middle .feeds .feed {
-     transform: none;
-   }
+   /* .middle .feeds .feed { */
+   /*   transform: none; */
+   /* } */
 
-   .middle .feeds .feed:nth-of-type(even) {
-      transform: none;
-   }
+   /* .middle .feeds .feed:nth-of-type(even) { */
+   /*    transform: none; */
+   /* } */
 }
 
 @media screen and (max-width: 420px) {

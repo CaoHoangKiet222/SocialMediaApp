@@ -36,10 +36,6 @@
    z-index: 2;
 }
 
-/* .middle .stories .story:first-child:active { */
-/*    transform: translate(500px, 500px); */
-/* } */
-
 .middle .stories .story:nth-child(1) {
    background: url('/images/city_illustration_2-wallpaper-2048x1152.jpg')
    no-repeat center center/cover;
@@ -152,17 +148,17 @@
    font-size: 0.85rem;
    line-height: 1.5;
    position: relative;
-  transform: translateX(400%);
-  transition: transform 0.4s ease;
+  /* transform: translateX(400%); */
+  /* transition: transform 0.4s ease; */
 }
 
-.middle .feeds .feed:nth-of-type(even) {
-   transform: translateX(-400%);
-}
+/* .middle .feeds .feed:nth-of-type(even) { */
+   /* transform: translateX(-400%); */
+/* } */
 
-.middle .feeds .feed.show {
-   transform: translateX(0);
-}
+/* .middle .feeds .feed.show { */
+   /* transform: translateX(0); */
+/* } */
 
 .middle .feeds .feed .caption p {
    margin: 8px 0px 0px 12px;
@@ -642,7 +638,7 @@
 .commented-popup .edit-delete > span {
    position: relative;
    margin-left: 1em;
-   z-index: 1;
+   /* z-index: 100; */
 }
 
 .commented-popup .edit-delete span i {

@@ -491,15 +491,21 @@ function commentPopup(text, index) {
 
          fetchData({newText, text, indexComment}, 'post/comment');
 
-         newComment.querySelector(".edit-delete > span i").addEventListener('click', (e) => {
-            e.target.parentElement.nextElementSibling.classList.toggle("show-up");
-         });
 
-         const edits = newComment.querySelectorAll(".edit-delete > span i");
-         edits.forEach((item, index) => {
-            item.addEventListener('click', function (e) {
+         let newItem, countRep = 0;
+         feed.querySelectorAll(".edit-delete > span i").forEach((item, index) => {
+            newItem = item.cloneNode(true);
+            item.parentNode.replaceChild(newItem, item);
+            newItem.addEventListener('click', () => {
                indexExistComment = index;
-               editComment(e);
+            })
+         })
+
+         const edits = feed.querySelectorAll(".edit-delete > span i");
+         edits.forEach((item, _index) => {
+            item.addEventListener('click', function (e) {
+               e.target.parentElement.nextElementSibling.classList.toggle("show-up");
+               editComment(e, countRep);
             });
          })
       }
@@ -507,10 +513,13 @@ function commentPopup(text, index) {
 
    // ######################### Edit Comment ############################
 }
-function editComment(e) {
+
+function editComment(e, countRep) {
    const containerJustify = e.target.parentElement.nextElementSibling;
    const commentedPopup = e.target.parentElement.parentElement.parentElement;
+   console.log(commentedPopup);
    const textarea = e.target.parentElement.parentElement.parentElement.nextElementSibling.querySelector("textarea");
+   const feed = commentedPopup.parentElement.parentElement;
 
    textarea.addEventListener('input', (e) => {
       e.preventDefault();
@@ -522,6 +531,8 @@ function editComment(e) {
       span.addEventListener('click', () => {
          if (index === 0) {
             commentedPopup.style.display = "none";
+            if (textarea.value.indexOf("</br>") !== -1)
+               textarea.value = textarea.parentElement.previousElementSibling.querySelector(".handle p").innerHTML.split('</br>').join('\n');
             commentedPopup.nextElementSibling.style.display = "flex";
             textAreaAdjust(textarea);
             textarea.focus();
@@ -529,8 +540,16 @@ function editComment(e) {
             textarea.addEventListener('keypress', removeEnter);
          }
          else if (index === 1) {
-            e.target.parentElement.parentElement.parentElement.remove();
-            fetchData({indexComment, indexExistComment}, 'clear/comment');
+            e.target.parentElement.parentElement.parentElement.parentElement.remove();
+            feed.querySelectorAll(".edit-delete > span i").forEach((item, index) => {
+               item.addEventListener('click', () => {
+                  indexExistComment = index;
+               })
+            })
+            if (countRep !== 1) {
+               fetchData({indexComment, indexExistComment}, 'clear/comment');
+               countRep++;
+            }
          }
          containerJustify.classList.remove("show-up");
       })
@@ -723,13 +742,19 @@ function checkFeedBacks() {
    })
 }
 
-feedList.forEach((item, _index) => {
-   item.querySelectorAll(".commented-popup .edit-delete > span i")?.forEach((itm, index) => {
-      itm.addEventListener("click", (e) => {
-         e.target.parentElement.nextElementSibling.classList.toggle("show-up");
+var reloadIndex = -1;
+feedList.forEach((feed, _index) => {
+   let newItem;
+   feed.querySelectorAll(".commented-popup .edit-delete > span i")?.forEach((item, index) => {
+      newItem = item.cloneNode(true);
+      item.parentNode.replaceChild(newItem, item);
+      let countReload = 0;
+      newItem.addEventListener('click', (e) => {
          indexComment = _index;
          indexExistComment = index;
-         editComment(e);
+         e.target.parentElement.nextElementSibling.classList.toggle("show-up");
+         console.log(indexComment, indexExistComment);
+         editComment(e, countReload);
       })
    })
 })
