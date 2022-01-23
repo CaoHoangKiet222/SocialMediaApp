@@ -531,8 +531,8 @@ function editComment(e, countRep) {
       span.addEventListener('click', () => {
          if (index === 0) {
             commentedPopup.style.display = "none";
-            if (textarea.value.indexOf("</br>") !== -1)
-               textarea.value = textarea.parentElement.previousElementSibling.querySelector(".handle p").innerHTML.split('</br>').join('\n');
+            if (textarea.value.search("<br>") !== -1)
+               textarea.value = textarea.parentElement.previousElementSibling.querySelector(".handle p").innerHTML.split('<br>').join('\n');
             commentedPopup.nextElementSibling.style.display = "flex";
             textAreaAdjust(textarea);
             textarea.focus();
@@ -565,7 +565,7 @@ function removeEnter(e) {
       e.preventDefault();
       e.target.value = e.target.value.trim();
       if (e.target.value !== '') {
-         let newText = e.target.value.split('\n').filter(item => item.length != 0).join('</br>');
+         let newText = e.target.value.split('\n').filter(item => item.length != 0).join('<br>');
          p.innerHTML = newText;
          comPopup.previousElementSibling.style.display = "flex";
          comPopup.style.display = "none";
