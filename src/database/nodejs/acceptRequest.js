@@ -1,5 +1,3 @@
-const {loadFile, saveFile} = require('./load_save');
-
 const primary = new Array(
    {
       src: '/images/profile-10.jpg',

@@ -26,7 +26,6 @@ app.use(express.static(file))
 app.set('views', path.join(__dirname, '/views'));
 
 
-// // Home router
 app.use(require('./routers/homeRouter'));
 
 app.use(require('./routers/api/backgroundRouter'));
